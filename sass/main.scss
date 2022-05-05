@@ -1,302 +1,380 @@
+@use "sass:color";
 @import "variables";
 
 html {
   font-kerning: normal;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  letter-spacing: 0.1px;
 }
 
 body {
-  margin:$baseline 0;
-  font-size:$font-size;
-  font-family:$font-family;
+  margin: 0;
+  font-size: $font-size;
+  font-family: $font-family;
   line-height: $line-height;
-  background:$background;
-  color:$color;
+  background: $background;
+  color: $color;
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
+blockquote {
+  margin: $baseline 0;
+  padding: calc(#{$baseline} * 0.8);
+  background-color: lighten(#b873b2, 36%);
+  border: 1px solid lighten(#b873b2, 30%);
+  border-radius: 5px;
+  p {
+    margin: 0;
+    code {
+      font-family: $code_font;
+      font-size: 0.8rem;
+      color: #b873b2;
+      padding: 2px 3px;
+      border-radius: 2px;
+      background-color: lighten(#b873b2, 30%);
+    }
   }
+  &:before {
+    font-family: $code_font;
+    font-size: 0.9rem;
+    content: "Tip!";
+    font-weight: 800;
+    color: #b873b2;
+  }
+}
 
-  50% {
-    opacity: 0.8;
-  }
+figure {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-  100% {
-    opacity: 1;
-  }
+figcaption {
+  text-align: center;
+  color: #444;
+  font-size: 0.8rem;
 }
 
 a {
-  &:link {
-    color:$links;
-    text-decoration: none;
+  color: $links;
+  text-decoration: none;
+
+  &:visited {
+    color: $links;
   }
 
   &:hover {
-    color:$hover-links;
+    color: $hover-links;
   }
+}
 
-  &:visited {
-    color:$visited-links;
-  }
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin-bottom: 0;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child {
+  margin-top: 0;
 }
 
 h2,
 h3,
 h4 {
+  margin-top: 2em;
+
   .anchor {
     visibility: hidden;
     text-decoration: none;
     cursor: pointer;
     line-height: 1;
-    color:$color;
+    color: $color;
   }
 
   &:hover {
     .anchor {
       visibility: visible;
-      animation: fade-in 0.3s ease-in-out;
-      font-family: 'FabricMDL2Icons';
+      font-family: "FabricMDL2Icons";
     }
   }
 }
 
 pre {
-  margin:$baseline 0;
+  font-size: 1rem;
+  margin: $baseline 0;
   border-radius: 4px;
-  padding:$baseline;
+  padding: calc(#{$baseline} * 0.6);
   overflow: auto;
   position: relative;
+  border-radius: 5px;
+  border: 1px solid #eee;
 
   code {
-  background:transparent;
-  
-  &::after {
-    content: attr(data-lang);
-    font-style: italic;
-    line-height: 1;
-    opacity:0.3;
-    position:absolute;
-    bottom:$baseline;
-    right:$baseline;
-    z-index:1;
-  }
+    background: transparent;
+    font-family: $code_font;
+    font-size: 0.8rem;
+
+    &::after {
+      content: attr(data-lang);
+      font-style: italic;
+      line-height: 1;
+      opacity: 0.3;
+      position: absolute;
+      bottom: $baseline;
+      right: $baseline;
+      z-index: 1;
+    }
   }
 }
 
- code {
-    font: $code_font;
-  }
+p code {
+  font-family: $code_font;
+  font-size: 0.8rem;
+  color: #757358;
+  padding: 3px 4px;
+  border-radius: 2px;
+  background-color: lighten(#757358, 55%);
+}
 
-  .copy-code-button {
-    font-family: 'FabricMDL2Icons';
-    display:none;
-    background:$background;
-    border-radius: 4px;
-    border:none;
-    cursor: pointer;
-    animation: fade-in 0.3s ease-in-out;
-    font-size: $baseline;
-    color:$color;
-    z-index: 10;
-    position:absolute;
-    top:$baseline;
-    right:$baseline;
-  }
+.copy-code-button {
+  font-family: "FabricMDL2Icons";
+  display: none;
+  background: $background;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: $baseline;
+  color: $color;
+  z-index: 10;
+  position: absolute;
+  top: $baseline;
+  right: $baseline;
+}
 
-  pre:hover .copy-code-button {
-    display: block;
-  }
+pre:hover .copy-code-button {
+  display: block;
+}
 
 nav {
   position: sticky;
   height: 92vh;
-  top:$baseline;
-  left:$baseline;
-  bottom: $baseline; 
-  padding-right: $baseline;
-  width: 20rem;
+  top: calc(#{$baseline} * 2);
+  left: calc(#{$baseline} * 1.5);
+  bottom: $baseline;
+  overflow-y: auto;
+  width: 20%;
 
   img {
-    width:128px;
-  }
-
-  h1 {
-    margin:0;
-    line-height: 1;
+    width: 128px;
   }
 }
 
 #toc {
-  margin-left:calc(#{$baseline} + #{$font-size});
-  padding:0;
-  margin:0 0 0 $baseline;
-  font-size: 80%;
+  margin-left: calc(#{$baseline} + #{$font-size});
+  padding: 0;
 
   li {
-    color:$color;
-    margin-left: $font-size;
-  
-  &::before {
-    display: inline-block;
-    content:""; 
-  }
+    color: $color;
 
-  ul {
-    padding:0;
-  }
+    &::before {
+      display: inline-block;
+      content: "";
+    }
 
+    ul {
+      padding: 0;
+    }
+  }
 }
 
+header {
+  background-color: black;
+  margin-bottom: calc(#{$baseline} * 2);
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.45) 20%),
+    url(/header_bg.jpg);
+  background-repeat: repeat-x;
+  background-position: left top;
+
+  h1 {
+    margin: 0;
+    line-height: 1;
+    font-size: 2rem;
+    a:link,
+    a:visited {
+      color: #ffffff;
+    }
+  }
+
+  .header-content {
+    height: 80px;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    max-width: 80%;
+  }
+}
+
+#release {
+  text-align: left;
+  margin: 0 1rem;
+  font-family: $code_font;
+  font-size: 0.8rem;
+
+  color: #ffffff;
+
+  &::before {
+    display: inline-block;
+    content: "\EE2E";
+    font-family: "FabricMDL2Icons";
+    margin-right: calc(#{$baseline} / 4);
+    color: #b873b2;
+    font-size: 1rem;
+    position: relative;
+    top: 2px;
+  }
 }
 
 main {
   display: flex;
   flex-flow: row nowrap;
-  animation: fade-in 0.4s ease-in-out;
-}
-
-#release {
-  text-align: left;
-  margin:$baseline 0;
-
-&::before {
-  display: inline-block;
-  content: "\EE2E";
-  font-family: 'FabricMDL2Icons';
-  margin-right:calc(#{$baseline} / 8);
-}
+  max-width: 80%;
+  width: 100%;
+  margin: 0 auto;
 }
 
 @keyframes slideIn {
   0% {
-   max-height:0;
-   opacity:0
+    max-height: 0;
+    opacity: 0;
   }
   100% {
-   max-height:999px;
-   opacity:1
+    max-height: 999px;
+    opacity: 1;
   }
- }
- @keyframes slideOut {
+}
+@keyframes slideOut {
   0% {
-   height:auto;
-   opacity:1
+    height: auto;
+    opacity: 1;
   }
   100% {
-   height:0;
-   opacity:0
+    height: 0;
+    opacity: 0;
   }
- }
-
- nav label {
-  display:block;
- }
-
- #trees {
-  overflow-y: auto;
-  height: 80%;
- }
-
- .subtree {
-  overflow:hidden;
-  margin:calc(#{$baseline} / 8) 0;
-  transition: overflow 0.2s ease-in-out;
-  padding: 0;
- }
-
- .tree-toggle-label {
-  user-select:none;
-  cursor:pointer; 
- }
-
- .tree-toggle-label::before {
-  display:inline-block;
-  content:"\E970";
-  font-family:'FabricMDL2Icons';
-  font-size:.75rem;
-  transform:rotate(0deg);
-  transform-origin:50% 50% 0px;
-  transition:transform 0.1s linear 0s;
-  margin-right: 2px;
- }
-
-
- .tree-toggle {
-  position:absolute;
-  opacity:0;
-  z-index:-1;
- }
-
- .tree-toggle:checked+.tree-toggle-label::before {
-  content:"\E970";
-  font-family:'FabricMDL2Icons';
-  font-size:.75rem;
-  transform:rotate(90deg);
-  transform-origin:50% 50% 0px;
-  transition:transform 0.1s linear 0s;
-  margin-right: 2px;
- }
-
- .tree-toggle:checked+.tree-toggle-label {
-  font-weight:bold;
- }
-
- .tree-toggle+.tree-toggle-label+.subtree {
-  animation-name:slideOut;
-  animation-duration:0.25s;
-  animation-fill-mode:both;
- }
-
- .tree-toggle:checked+.tree-toggle-label+.subtree {
-  animation-name:slideIn;
-  animation-duration:0.25s;
-  animation-fill-mode:both;
- }
- 
-
- .subtree li {
-  list-style-type: none;
-  margin-left: $baseline;
- 
-
-  a {
-    color:$color;
-  }
-
-  &::before {
-    content: "\E7C3";
-    font-family:'FabricMDL2Icons';
-    font-size:0.75rem;
-  }
-
 }
 
-.active a {
+nav label {
+  display: block;
+}
+
+#trees {
+  padding-right: $baseline;
+}
+
+.subtree {
+  overflow: hidden;
+  margin: calc(#{$baseline} / 8) 0;
+  transition: overflow 0.2s ease-in-out;
+  padding: 0;
+}
+
+.nav-section-heading {
   font-weight: bold;
 }
 
+.subtree > li {
+  padding-left: calc(#{$baseline} * 0.5);
+  position: relative;
+
+  &.active {
+    background-color: lighten(desaturate(#757358, 10%), 55%);
+    font-weight: bold;
+  }
+
+  &.active,
+  &:hover {
+    border-color: #757358;
+  }
+
+  a {
+    color: $color;
+    display: block;
+    &:hover {
+      color: #757358;
+    }
+  }
+}
+
+.subtree,
+.subtree ul {
+  list-style-type: none;
+}
+
+.subtree ol li {
+  a:hover {
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+.subtree li {
+  &.active {
+    border-color: #757358;
+    a {
+      color: #757358;
+    }
+  }
+
+  a {
+    color: $color;
+  }
+
+  &.active a {
+    color: #757358;
+  }
+}
 
 article {
- width: calc(100% - (#{$baseline} * 4 + 20rem));
- margin-left:calc(#{$baseline} * 2);
+  width: 80%;
+  margin-left: calc(#{$baseline} * 2);
 
- img {
-   max-width:100%;
- }
+  img {
+    width: 100%;
+  }
 
+  a {
+    border-bottom: 1px solid #ccc;
+    &:hover {
+      border-color: #bbb;
+    }
+  }
 }
 
 #mobile {
   display: none;
 }
 
-
-@media screen and (max-width: 1023px) { 
-
+@media screen and (max-width: 1023px) {
   main {
     flex-flow: column nowrap;
     width: 100%;
@@ -304,38 +382,25 @@ article {
 
   nav {
     position: inherit;
-    height:auto;
-    margin:$baseline $baseline 0 $baseline;
+    height: auto;
+    margin: $baseline $baseline 0 $baseline;
+    width: 100%;
+    margin: 0;
   }
 
   article {
-    width: calc(100% - (#{$baseline} * 2));
-    margin:0 $baseline;
-    z-index:1;
-  }
-
-  #mobile {
-    font-family: 'FabricMDL2Icons';
-    cursor: pointer;
-    font-size: $baseline;
-    margin:0 $baseline 0 0;
-    display: block;
-    color:$color;
+    width: 100%;
+    margin: 0;
+    z-index: 1;
   }
 
   #trees {
-    display: none;
-    position:absolute;
-    background: $background;
-    height:auto;
-    width:100vw;
-    z-index:10;
-    box-shadow: 0 2px 0 rgba(0,0,0,.1);
+    height: auto;
   }
+}
 
-  #on_right {
-    margin-top:$baseline;
-  }
+#on_right {
+  margin-left: auto;
 }
 
 @import "fabric-icons-inline";
