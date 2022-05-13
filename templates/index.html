@@ -11,7 +11,12 @@
   <style>
     @font-face {
       font-family: "Martian Mono";
-      src: url("/MartianMono-StdRg.woff2") format("woff2");
+      src: url("{{ get_url(path="MartianMono-StdRg.woff2") }}") format("woff2");
+    }
+
+    header {
+      background-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.45) 20%),
+      url({{ get_url(path="header_bg.jpg") }});
     }
   </style>
 </head>
