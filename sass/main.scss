@@ -19,6 +19,48 @@ body {
   flex-direction: column;
 }
 
+main {
+  display: flex;
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: calc(#{$baseline} * 5);
+}
+
+nav {
+  position: sticky;
+  height: 92vh;
+  top: calc(#{$baseline} * 2);
+  left: calc(#{$baseline} * 1.5);
+  bottom: $baseline;
+  overflow-y: auto;
+  flex: 0 0 200px;
+
+  img {
+    width: 128px;
+  }
+
+  label {
+    display: block;
+  }
+}
+
+article {
+  flex: 1;
+  margin-right: calc(#{$baseline} * 5);
+
+  img {
+    width: 100%;
+  }
+
+  a {
+    border-bottom: 1px solid #ccc;
+    &:hover {
+      border-color: #bbb;
+    }
+  }
+}
+
 blockquote {
   margin: $baseline 0;
   padding: calc(#{$baseline} * 0.8);
@@ -147,13 +189,17 @@ pre {
   }
 }
 
-p code {
-  font-family: $code_font;
-  font-size: 0.8rem;
-  color: #757358;
-  padding: 3px 4px;
-  border-radius: 2px;
-  background-color: lighten(#757358, 55%);
+p,
+ul,
+ol {
+  code {
+    font-family: $code_font;
+    font-size: 0.8rem;
+    color: #757358;
+    padding: 3px 4px;
+    border-radius: 2px;
+    background-color: lighten(#757358, 55%);
+  }
 }
 
 .copy-code-button {
@@ -173,20 +219,6 @@ p code {
 
 pre:hover .copy-code-button {
   display: block;
-}
-
-nav {
-  position: sticky;
-  height: 92vh;
-  top: calc(#{$baseline} * 2);
-  left: calc(#{$baseline} * 1.5);
-  bottom: $baseline;
-  overflow-y: auto;
-  width: 20%;
-
-  img {
-    width: 128px;
-  }
 }
 
 #toc {
@@ -253,14 +285,6 @@ header {
   }
 }
 
-main {
-  display: flex;
-  flex-flow: row nowrap;
-  max-width: 80%;
-  width: 100%;
-  margin: 0 auto;
-}
-
 @keyframes slideIn {
   0% {
     max-height: 0;
@@ -280,14 +304,6 @@ main {
     height: 0;
     opacity: 0;
   }
-}
-
-nav label {
-  display: block;
-}
-
-#trees {
-  padding-right: $baseline;
 }
 
 .subtree {
@@ -327,9 +343,11 @@ nav label {
 .subtree,
 .subtree ul {
   list-style-type: none;
+  font-size: 0.9rem;
 }
 
 .subtree ol li {
+  font-size: 0.8rem;
   a:hover {
     border-bottom: 1px solid #ccc;
   }
@@ -349,22 +367,6 @@ nav label {
 
   &.active a {
     color: #757358;
-  }
-}
-
-article {
-  width: 80%;
-  margin-left: calc(#{$baseline} * 2);
-
-  img {
-    width: 100%;
-  }
-
-  a {
-    border-bottom: 1px solid #ccc;
-    &:hover {
-      border-color: #bbb;
-    }
   }
 }
 
