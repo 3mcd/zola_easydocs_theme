@@ -21,38 +21,57 @@ body {
 
 main {
   display: flex;
-  width: 80%;
-  max-width: 1200px;
+  width: 90%;
+  max-width: 1400px;
   margin: 0 auto;
-  gap: calc(#{$baseline} * 5);
+  gap: $baseline;
 }
 
 nav {
+  flex: 1;
   position: sticky;
   height: 92vh;
   top: calc(#{$baseline} * 2);
-  left: calc(#{$baseline} * 1.5);
   bottom: $baseline;
   overflow-y: auto;
-  flex: 0 0 200px;
-
-  img {
-    width: 128px;
-  }
 
   label {
     display: block;
   }
+
+  &.PageNav {
+    font-size: 0.9rem;
+  }
 }
 
 article {
-  flex: 1;
-  margin-right: calc(#{$baseline} * 5);
+  flex: 3;
+
+  h1:first-of-type {
+    transform: translateY(-0.75rem);
+    font-weight: 800;
+  }
+
+  h2 {
+    font-weight: 600;
+  }
+
+  h3 {
+    font-weight: 600;
+  }
+
+  h4 {
+    font-weight: 500;
+  }
 
   img {
     width: 100%;
   }
+}
 
+header,
+article,
+nav.PageNav {
   a {
     border-bottom: 1px solid #ccc;
     &:hover {
@@ -113,15 +132,19 @@ a {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.8rem;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
 }
 
 h3 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.4rem;
 }
 
 h1,
@@ -169,7 +192,7 @@ pre {
   overflow: auto;
   position: relative;
   border-radius: 5px;
-  border: 1px solid #eee;
+  background-color: transparent;
 
   code {
     background: transparent;
@@ -244,18 +267,21 @@ pre:hover .copy-code-button {
 }
 
 header {
-  background-color: black;
-  margin-bottom: calc(#{$baseline} * 2);
+  margin-bottom: calc(#{$baseline}* 2);
   background-repeat: repeat-x;
   background-position: left top;
+  border-bottom: 1px solid #757358;
 
   h1 {
     margin: 0;
     line-height: 1;
-    font-size: 2rem;
+    font-size: 1.4rem;
     a:link,
     a:visited {
-      color: #ffffff;
+      color: #000;
+    }
+    a {
+      border: none;
     }
   }
 
@@ -265,7 +291,8 @@ header {
     display: flex;
     flex-direction: row;
     margin: 0 auto;
-    max-width: 80%;
+    width: 90%;
+    max-width: 1400px;
   }
 }
 
@@ -274,19 +301,7 @@ header {
   margin: 0 1rem;
   font-family: $code_font;
   font-size: 0.8rem;
-
-  color: #ffffff;
-
-  &::before {
-    display: inline-block;
-    content: "\EE2E";
-    font-family: "FabricMDL2Icons";
-    margin-right: calc(#{$baseline} / 4);
-    color: #b873b2;
-    font-size: 1rem;
-    position: relative;
-    top: 2px;
-  }
+  position: relative;
 }
 
 @keyframes slideIn {
@@ -326,8 +341,12 @@ header {
   position: relative;
 
   &.active {
-    background-color: lighten(desaturate(#757358, 10%), 55%);
-    font-weight: bold;
+    background: linear-gradient(
+      90deg,
+      lighten(desaturate(#757358, 5%), 50%) 0%,
+      rgba(0, 0, 0, 0) 80%
+    );
+    font-weight: 500;
   }
 
   &.active,

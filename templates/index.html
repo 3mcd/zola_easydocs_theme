@@ -13,11 +13,6 @@
       font-family: "Martian Mono";
       src: url("{{ get_url(path="MartianMono-StdRg.woff2") }}") format("woff2");
     }
-
-    header {
-      background-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.45) 20%),
-      url({{ get_url(path="header_bg.jpg") }});
-    }
   </style>
 </head>
 <body>
@@ -45,28 +40,29 @@
     </a>
     {% endif %}
     {% else %}
+    <img src="{{ get_url(path="logo.png") | safe }}" width="30px" style="margin-right: 0.5rem;" />
     <h1><a href="{{ config.base_url }}">{{ config.title }}</a></h1>
     {% endif %}
-    {% if config.extra.release %}
-    <a id="release"></a>
-    {% endif %}
     {% if config.build_search_index %}
-    <div id="on_right">
-      <span id="search-ico" class="ms-Icon--Search"></span>
-    </div>
     <div class="search-container">
       <input id="search" type="search" placeholder="Search as you type...">
-      <div class="search-results">
-        <div class="search-results__header"></div>
-        <ul class="search-results__items"></ul>
-      </div>
     </div>
     {% endif %}
+    <div id="on_right">
+      <span id="search-ico" class="ms-Icon--Search"></span>
+      {% if config.extra.release %}
+      <a id="release"></a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="search-results">
+    <div class="search-results__header"></div>
+    <ul class="search-results__items"></ul>
   </div>
   </header>
   <main>
     {% block nav %}
-    <nav>
+    <nav class="SiteNav">
       <a href="javascript:void(0);" onclick="burger()" id="mobile" class="ms-Icon--GlobalNavButton"></a>
       <div id="trees">
         {% set section = get_section(path="_index.md") %}
@@ -78,21 +74,6 @@
           <li {% if current_path == page.path %}class="active" {% endif %}>
             <a href="{{page.permalink | safe }}">{{page.title}}</a>
           </li>
-          {% if page.toc %}
-          {% if current_path == page.path %}
-          {% set_global header_count = 0 %}
-          {% for h2 in page.toc %}
-          {% set_global header_count = header_count + 1 %}
-          {% endfor %}
-          {% if header_count >= 2 %}
-          <ol id="toc">
-            {% for h2 in page.toc %}
-            <li><a href="{{ h2.permalink | safe }}">{{ h2.title }}</a></li>
-            {% endfor %}
-          </ol>
-          {% endif %}
-          {% endif %}
-          {% endif %}
           {% endfor %}
         </ul>
         {% endfor %}
@@ -100,12 +81,31 @@
     </nav>
     {% endblock nav %}
     <article>
-      <div id="wrap">
-        {% block content %}
-        {{ section.content | safe }}
-        {% endblock content %}
-      </div>
+      {% block content %}
+      {{ section.content | safe }}
+      {% endblock content %}
     </article>
+    <nav class="PageNav">
+    {% set section = get_section(path="_index.md") %}
+    {% for p in section.subsections %}
+    {% set subsection = get_section(path=p) %}
+    {% for page in subsection.pages %}
+    {% if current_path == page.path %}
+    {% set_global header_count = 0 %}
+    {% for h2 in page.toc %}
+    {% set_global header_count = header_count + 1 %}
+    {% endfor %}
+      {% if header_count >= 2 %}
+      <ol id="toc">
+        {% for h2 in page.toc %}
+        <li><a href="{{ h2.permalink | safe }}">{{ h2.title }}</a></li>
+        {% endfor %}
+      </ol>
+      {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    </nav>
   </main>
   {% if config.build_search_index %}
   <script type="text/javascript" src="{{ get_url(path="elasticlunr.min.js") | safe }}" defer></script>

@@ -1,16 +1,18 @@
 .search-container {
   display: none;
+  position: relative;
+  margin: 0 auto;
+  max-width: 90%;
 
-  &--is-visible {
+  &.is-visible {
     display: block;
-    width: 100%;
+    flex: 1;
+    padding: 1rem;
   }
 
   #search {
-    width: 100%;
     display: block;
     border: none;
-    border-left: 1px solid $color;
     padding: 1px 0;
     text-align: left;
     line-height: $baseline;
@@ -18,31 +20,40 @@
     font-family: $font-family;
     color: $color;
     background: transparent;
+    width: 100%;
+    height: 50px;
   }
 
   #search:focus {
     outline: none;
     border: none;
   }
+}
 
-  .search-results {
-    &__header {
-      font-weight: bold;
-      padding: 1rem 0rem;
-    }
+.search-results {
+  display: none;
+  margin: 0 auto;
+  max-width: 90%;
 
-    &__items {
-      margin: 0 2vw;
-      padding: 0;
-      list-style: circle;
-    }
+  &.is-visible {
+    display: block;
+  }
 
-    &__item {
-      margin-bottom: 1rem;
-    }
+  &__header {
+    font-weight: bold;
+  }
 
-    &__teaser {
-    }
+  &__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    margin-bottom: 1rem;
+  }
+
+  &__teaser {
   }
 }
 
@@ -50,9 +61,28 @@
   font-family: "FabricMDL2Icons";
   cursor: pointer;
   color: #bbb;
-  font-size: $baseline;
+  font-size: 1rem;
   line-height: 1;
   &:hover {
     color: #eee;
   }
+}
+
+/* clears the ‘X’ from Internet Explorer */
+input[type="search"]::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+input[type="search"]::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0;
+}
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
 }
