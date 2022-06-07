@@ -229,6 +229,14 @@ ol {
   }
 }
 
+.Page-description {
+  font-size: 1.3rem;
+  font-weight: 200;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: $baseline;
+  margin-bottom: 0;
+}
+
 .copy-code-button {
   font-family: "FabricMDL2Icons";
   display: none;
@@ -268,8 +276,7 @@ pre:hover .copy-code-button {
 
 header {
   margin-bottom: calc(#{$baseline}* 2);
-  background-repeat: repeat-x;
-  background-position: left top;
+  background-color: #efefef;
   border-bottom: 1px solid #757358;
 
   h1 {
