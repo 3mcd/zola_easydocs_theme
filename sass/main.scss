@@ -184,6 +184,10 @@ h4 {
   }
 }
 
+blockquote code {
+  white-space: nowrap;
+}
+
 pre {
   font-size: 1rem;
   margin: $baseline 0;
@@ -231,8 +235,8 @@ ol {
 
 .Page-description {
   font-size: 1.3rem;
-  font-weight: 200;
-  border-bottom: 1px solid #ccc;
+  font-weight: 300;
+  color: #757358;
   padding-bottom: $baseline;
   margin-bottom: 0;
 }
@@ -277,7 +281,6 @@ pre:hover .copy-code-button {
 header {
   margin-bottom: calc(#{$baseline}* 2);
   background-color: #efefef;
-  border-bottom: 1px solid #757358;
 
   h1 {
     margin: 0;
