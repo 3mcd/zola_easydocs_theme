@@ -46,6 +46,7 @@ nav {
 
 article {
   flex: 3;
+  padding: 0 $baseline;
 
   h1:first-of-type {
     transform: translateY(-0.75rem);
@@ -67,6 +68,9 @@ article {
   img {
     width: 100%;
   }
+
+  padding-bottom: calc(#{$baseline} * 2);
+  border-right: 1px solid #efefef;
 }
 
 header,
@@ -78,6 +82,17 @@ nav.PageNav {
       border-color: #bbb;
     }
   }
+}
+
+nav.SiteNav,
+nav.PageNav {
+  flex: 0 0 200px;
+}
+
+article,
+nav.SiteNav,
+nav.PageNav {
+  padding-top: calc(#{$baseline}* 2);
 }
 
 blockquote {
@@ -144,7 +159,9 @@ h3 {
 }
 
 h4 {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
+  color: #444;
+  font-weight: 300;
 }
 
 h1,
@@ -191,7 +208,6 @@ blockquote code {
 pre {
   font-size: 1rem;
   margin: $baseline 0;
-  border-radius: 4px;
   padding: calc(#{$baseline} * 0.6);
   overflow: auto;
   position: relative;
@@ -204,14 +220,7 @@ pre {
     font-size: 0.8rem;
 
     &::after {
-      content: attr(data-lang);
-      font-style: italic;
-      line-height: 1;
-      opacity: 0.3;
-      position: absolute;
-      bottom: $baseline;
-      right: $baseline;
-      z-index: 1;
+      display: none;
     }
   }
 }
@@ -261,7 +270,7 @@ pre:hover .copy-code-button {
 }
 
 #toc {
-  margin-left: calc(#{$baseline} + #{$font-size});
+  margin-left: $font-size;
   padding: 0;
 
   li {
@@ -279,7 +288,6 @@ pre:hover .copy-code-button {
 }
 
 header {
-  margin-bottom: calc(#{$baseline}* 2);
   background-color: #efefef;
 
   h1 {
@@ -434,6 +442,13 @@ header {
 
 #on_right {
   margin-left: auto;
+}
+
+footer {
+  padding: $baseline;
+  font-size: 0.8rem;
+  border-top: 1px solid #efefef;
+  text-align: center;
 }
 
 @import "fabric-icons-inline";

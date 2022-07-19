@@ -96,6 +96,7 @@
     {% set_global header_count = header_count + 1 %}
     {% endfor %}
       {% if header_count >= 2 %}
+      <h4>On this page</h4>
       <ol id="toc">
         {% for h2 in page.toc %}
         <li><a href="{{ h2.permalink | safe }}">{{ h2.title }}</a></li>
@@ -107,6 +108,9 @@
     {% endfor %}
     </nav>
   </main>
+  <footer>
+    <a href="https://opensource.org/licenses/MIT">MIT Licensed</a> | Copyright © 2020-present <a href="https://github.com/3mcd">Eric McDaniel</a>
+  </footer>
   {% if config.build_search_index %}
   <script type="text/javascript" src="{{ get_url(path="elasticlunr.min.js") | safe }}" defer></script>
   <script type="text/javascript" src="{{ get_url(path="search_index.en.js") | safe }}" defer></script>
